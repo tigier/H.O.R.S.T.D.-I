@@ -1,12 +1,12 @@
 package Model;
-import Control.Controler;
+import Control.MainController;
 
 /**
  * Created by 204g14 on 09.12.2016.
  */
 public class Tower {
     private Shot shot;
-    private Controler controler;
+    private MainController controler;
     private Enemy target;
     private Map map;
     private int range;
