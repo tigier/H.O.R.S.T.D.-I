@@ -126,7 +126,7 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
         while (iterator.hasNext()){
             DrawableObject tempDO = iterator.next();
             if (tempDO instanceof InteractableObject){
-                ((InteractableObject)tempDO).mouseClicked(e);
+                //((InteractableObject)tempDO).mouseClicked(e);
             }
         }
     }
