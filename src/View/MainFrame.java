@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * F�gt dem DrawWindow ein neues DrawingBoard hinzu. Dieses wird nicht zum
+     * Fügt dem DrawWindow ein neues DrawingBoard hinzu. Dieses wird nicht zum
      * aktuellen DrawingBoard!
      */
     public void addNewDrawingPanel(){
@@ -53,7 +53,7 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * �ndert das aktuell vom DrawWindow gezeigte DrawingBoard.
+     * Ändert das aktuell vom DrawWindow gezeigte DrawingBoard.
      * @param index Der Index des neuen zu zeigenden DrawingBoards (angefangen bei 0).
      */
     public void setActiveDrawingPanel(int index){
