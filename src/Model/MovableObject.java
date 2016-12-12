@@ -15,6 +15,7 @@ public abstract class MovableObject implements DrawableObject {
     int x;
     int y;
     int range;
+    int moved;
     DrawingPanel panel;
     Graphics2D graphics2D;
 
@@ -29,9 +30,17 @@ public abstract class MovableObject implements DrawableObject {
     }
 
     public void move(){
-        int s = x+(tx-x)/range;
-        int r = y+(ty-y)/range;
+        if(moved < range) {
+            moved =+  (tx - x) / range;
+            x =+(tx - x) / range;
+            y =+(ty - y) / range;
+        }else{
+            missionAccomplished();
+        }
+
     }
+
+    public abstract void missionAccomplished();
 
 
 }
