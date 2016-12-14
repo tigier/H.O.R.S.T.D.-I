@@ -1,8 +1,12 @@
 package View;
 
+import Model.Field;
 import Model.Map;
+import Model.NormalField;
+import Model.PathField;
 
 import javax.swing.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +20,7 @@ public class MainFrame extends JFrame {
     private DrawingPanel activePanel;
     private ArrayList<DrawingPanel> panels;
     private Map map;
+    private Field[][] field;
     /**
      * Konstruktor
      * @param name Der Titel des Fensters
@@ -37,19 +42,22 @@ public class MainFrame extends JFrame {
         setVisible(true);
 
 
-        scl = 20;
+        scl = 50;
         map = new Map(activePanel.getWidth(),activePanel.getHeight());
         loadMap();
 
     }
 
     public void loadMap(){
+        field = new Field[activePanel.getWidth()/scl][activePanel.getHeight()/scl];
         int[][] hmap = map.getMap();
 
-        for(int i= 0; i< hmap.length; i++){
-            for(int j= 0; j<hmap[i].length; j++){
-                if(hmap[i][j] == 1){
-
+        for(int i= 0; i < hmap.length; i++){
+            for(int j= 0; j < hmap[i].length; j++){
+                if(hmap[i][j] == 0){
+                    field[i][j]= new NormalField(i*scl,j*scl, scl);
+                }else if(hmap[i][j] == 1){
+                    field[i][j]= new PathField(i*scl,j*scl, scl);
                 }
             }
         }

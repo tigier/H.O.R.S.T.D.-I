@@ -5,20 +5,21 @@ import View.InteractableObject;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Created by 204g14 on 09.12.2016.
  */
-public class Tower implements InteractableObject {
+public class Tower extends Field implements InteractableObject {
     private List<Shot> shots;
     private MainController controler;
     private Enemy target;
-    private Map map;
     private int range;
-    private int x;
-    private int y;
 
-    public Tower(int range,int x,int y){
+
+
+    public Tower(int range,int x,int y, int scl){
+        super(x,y,scl);
         this.range = range;
         shots = new List<>();
         this.x = x;
@@ -41,10 +42,6 @@ public class Tower implements InteractableObject {
 
     }
 
-    @Override
-    public void draw(DrawingPanel dp, Graphics2D g2d) {
-
-    }
 
     @Override
     public void mouseReleased(MouseEvent e) {
