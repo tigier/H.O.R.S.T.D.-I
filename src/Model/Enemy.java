@@ -37,4 +37,8 @@ public class Enemy extends MovableObject{
     public void update(double dt) {
 
     }
+
+    public void missionAccomplished(){
+
+    }
 }

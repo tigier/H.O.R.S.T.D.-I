@@ -1,5 +1,7 @@
 package View;
 
+import Model.Map;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,6 +17,7 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
     private int dt;
     private long lastLoop, elapsedTime;
 
+
     // Referenzen
     private ArrayList<DrawableObject> drawableObjects;
 
@@ -22,6 +25,7 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
      * Konstruktor
      */
     public DrawingPanel(){
+
         super();
         addMouseListener(this);
         setDoubleBuffered(true);
@@ -30,6 +34,8 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
         lastLoop = System.nanoTime();
         javax.swing.Timer timer = new javax.swing.Timer(dt, this);
         timer.start();
+
+
     }
 
     /**

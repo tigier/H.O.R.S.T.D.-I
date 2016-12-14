@@ -32,4 +32,8 @@ public class Shot extends MovableObject {
     public void update(double dt) {
         move();
     }
+
+    public void missionAccomplished(){
+
+    }
 }
