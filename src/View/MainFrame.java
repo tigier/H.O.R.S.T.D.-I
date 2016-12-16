@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
     private ArrayList<DrawingPanel> panels;
     private Map map;
     private Field[][] field;
-    private Graphics2D g2d;
+
     /**
      * Konstruktor
      * @param name Der Titel des Fensters
@@ -37,6 +37,7 @@ public class MainFrame extends JFrame {
         activePanel = new DrawingPanel();
         panels.add(activePanel);
         add(activePanel);
+        activePanel.setBackground(new Color(212, 125, 31));
         addKeyListener(activePanel);
         setLocation(x,y);
         setSize(width,height);

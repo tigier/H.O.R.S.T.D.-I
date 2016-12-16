@@ -55,7 +55,7 @@ public class Tower extends Field implements InteractableObject {
 
     @Override
     public void update(double dt) {
-
+        updateEnemy();
     }
 
     @Override

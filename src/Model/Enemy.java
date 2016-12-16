@@ -35,7 +35,7 @@ public class Enemy extends MovableObject{
 
     @Override
     public void update(double dt) {
-
+        move();
     }
 
     public void missionAccomplished(){
