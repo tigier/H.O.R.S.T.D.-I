@@ -6,6 +6,7 @@ import Model.NormalField;
 import Model.PathField;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class MainFrame extends JFrame {
     private ArrayList<DrawingPanel> panels;
     private Map map;
     private Field[][] field;
+    private Graphics2D g2d;
     /**
      * Konstruktor
      * @param name Der Titel des Fensters
@@ -30,6 +32,7 @@ public class MainFrame extends JFrame {
      * @param height Die Höhe des Fensters
      */
     public MainFrame(String name, int x, int y, int width, int height) {
+
         panels = new ArrayList<>();
         activePanel = new DrawingPanel();
         panels.add(activePanel);
@@ -43,12 +46,13 @@ public class MainFrame extends JFrame {
 
 
         scl = 50;
-        map = new Map(activePanel.getWidth(),activePanel.getHeight());
+        map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();
 
     }
 
     public void loadMap(){
+
         field = new Field[activePanel.getWidth()/scl][activePanel.getHeight()/scl];
         int[][] hmap = map.getMap();
 
@@ -56,8 +60,10 @@ public class MainFrame extends JFrame {
             for(int j= 0; j < hmap[i].length; j++){
                 if(hmap[i][j] == 0){
                     field[i][j]= new NormalField(i*scl,j*scl, scl);
+                    activePanel.addObject(field[i][j]);
                 }else if(hmap[i][j] == 1){
                     field[i][j]= new PathField(i*scl,j*scl, scl);
+                    activePanel.addObject(field[i][j]);
                 }
             }
         }

@@ -19,4 +19,13 @@ public class PathField extends Field  implements DrawableObject {
     public void update(double dt) {
 
     }
+    @Override
+    public void draw(DrawingPanel dp, Graphics2D g2d) {
+        g2d.setColor(new Color(212, 125, 31));
+        g2d.fill(rectangle);
+        g2d.setColor(new Color(0, 0, 0));
+        g2d.draw(rectangle);
+        rectangle.setFrame(x,y,scl,scl);
+
+    }
 }

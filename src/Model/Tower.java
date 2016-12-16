@@ -26,6 +26,11 @@ public class Tower extends Field implements InteractableObject {
         this.y = y;
     }
 
+    @Override
+    public void draw(DrawingPanel dp, Graphics2D g2d) {
+
+    }
+
     public void shotFire(Shot pShot){
         shots.append(new Shot(target.getCoord(), getX(), getY(), range));
     }
