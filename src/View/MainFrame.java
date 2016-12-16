@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
      * @param width Die Breite des Fensters
      * @param height Die Höhe des Fensters
      */
-    public MainFrame(String name, int x, int y, int width, int height) {
+    public MainFrame(String name, int x, int y, int width, int height, int scl) {
 
         panels = new ArrayList<>();
         activePanel = new DrawingPanel();
@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
         setVisible(true);
 
 
-        scl = 50;
+        this.scl = scl;
         map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();
 

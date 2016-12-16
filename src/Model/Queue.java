@@ -1,11 +1,9 @@
 package Model;
 
-import com.oracle.webservices.internal.api.message.ContentType;
-
 /**
  * Created by 204g13 on 31.10.2016.
  */
-public class Queue<contentType> {
+public class Queue<ContentType> {
     private QueueNode head;
     private QueueNode tail;
     //___________________________________________
