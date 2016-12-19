@@ -32,7 +32,7 @@ public class Tower extends Field implements InteractableObject {
     }
 
     public void shotFire(Shot pShot){
-        shots.append(new Shot(target.getCoord(), getX(), getY(), range));
+
     }
 
     public int getY() {

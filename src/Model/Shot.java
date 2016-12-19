@@ -1,5 +1,6 @@
 package Model;
 
+import View.DrawableObject;
 import View.DrawingPanel;
 
 
@@ -11,12 +12,13 @@ import java.awt.geom.Ellipse2D;
  */
 
 
-public class Shot extends MovableObject {
+public class Shot implements DrawableObject {
     private int[] target;
     private Ellipse2D.Double shell;
-
+    int x;
+    int y;
     public Shot(int[] target,int x,int y, int range){
-        super(target, x, y, range);
+
 
     }
 
@@ -29,8 +31,8 @@ public class Shot extends MovableObject {
     }
 
     @Override
-    public void update(double dt) {
-        move();
+    public void update(double dt){
+
     }
 
     public void missionAccomplished(){

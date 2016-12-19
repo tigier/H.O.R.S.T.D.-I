@@ -19,7 +19,10 @@ public class Map {
         map = new int[x][y];
         for(int i= 0; i< map.length ; i++){
             for(int j = 0; j< map[j].length; j++){
-                if(j != 4){
+                if(j != 4 && i> 4){
+                    map[i][j]= 0;
+                }
+                else{
                     map[i][j]= 1;
                 }
             }

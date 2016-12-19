@@ -5,6 +5,8 @@ import Model.Queue;
 import View.DrawingPanel;
 import View.MainFrame;
 
+import java.awt.event.WindowEvent;
+
 
 /**
  * Created by 204g14 on 09.12.2016.
@@ -20,7 +22,8 @@ MainFrame frame;
         this.frame = frame;
         spawn = new int[2];
         spawn[0] = 19;
-        spawn[1] = 5;
+        spawn[1] = 4;
+
         this.scl= scl;
         loadLvl();
 
@@ -30,9 +33,13 @@ MainFrame frame;
         return frame.getActiveDrawingPanel();
     }
 
+    public void close(){
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    }
+
     public void loadLvl(){
         EnemyQueue = new Queue<>();
-        EnemyQueue.enqueue(new Enemy(5,2,spawn, false, spawn[0], spawn[1], scl));
-        frame.getActiveDrawingPanel().addObject(EnemyQueue.front());
+        EnemyQueue.enqueue(new Enemy(5,5, false, spawn[0]*scl, spawn[1]*scl+scl/2-5, scl, this));
+        getPanel().addObject(EnemyQueue.front());
     }
 }
