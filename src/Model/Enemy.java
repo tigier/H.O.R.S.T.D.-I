@@ -43,7 +43,7 @@ public class Enemy implements DrawableObject{
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
         g2d.draw(rectangle);
-        rectangle.setFrame(x,y,10,10);
+        rectangle.setFrame(x,y,20,20);
 
     }
 

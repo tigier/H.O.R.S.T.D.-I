@@ -4,6 +4,7 @@ import View.DrawingPanel;
 import View.InteractableObject;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 
@@ -28,7 +29,12 @@ public class Tower extends Field implements InteractableObject {
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-
+        rectangle = new Rectangle2D.Double();
+        g2d.setColor(new Color(212, 0, 28));
+        g2d.fill(rectangle);
+        g2d.setColor(new Color(0, 0, 0));
+        g2d.draw(rectangle);
+        rectangle.setFrame(x,y,50,50);
     }
 
     public void shotFire(Shot pShot){
@@ -59,12 +65,12 @@ public class Tower extends Field implements InteractableObject {
     }
 
     @Override
-    public void keyPressed(int key) {
+    public void keyReleased(int key) {
 
     }
 
     @Override
-    public void keyReleased(int key) {
+    public void keyPressed(int key) {
 
     }
 }

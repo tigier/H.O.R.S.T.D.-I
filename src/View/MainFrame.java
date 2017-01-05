@@ -1,13 +1,14 @@
 package View;
 
-import Model.Field;
-import Model.Map;
-import Model.NormalField;
-import Model.PathField;
+import Model.*;
 
 import javax.swing.*;
 import java.awt.*;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,6 @@ public class MainFrame extends JFrame {
      * @param height Die Höhe des Fensters
      */
     public MainFrame(String name, int x, int y, int width, int height, int scl) {
-
         panels = new ArrayList<>();
         activePanel = new DrawingPanel();
         panels.add(activePanel);
@@ -47,6 +47,33 @@ public class MainFrame extends JFrame {
 
 
         this.scl = scl;
+
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                activePanel.addObject(new Tower(5,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();

@@ -24,6 +24,7 @@ Map map;
         this.scl= scl;
         loadLvl();
 
+
     }
 
     public DrawingPanel getPanel(){
@@ -33,7 +34,7 @@ Map map;
     public void loadLvl(){
         EnemyQueue = new Queue<>();
         EnemyQueue.enqueue(new Enemy(5,1, map.getWaypoints().top()[0],map.getWaypoints().top()[1], map.getWaypoints(), scl));
-        getPanel().addObject(EnemyQueue.front());
+        EnemyQueue.enqueue(new Enemy(5,1, map.getWaypoints().top()[0],map.getWaypoints().top()[1], map.getWaypoints(), scl));
         getPanel().addObject(EnemyQueue.front());
     }
 
