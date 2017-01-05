@@ -47,6 +47,7 @@ public class MainFrame extends JFrame {
 
 
         this.scl = scl;
+
         map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();
 
@@ -68,6 +69,10 @@ public class MainFrame extends JFrame {
                 }
             }
         }
+    }
+
+    public Map getMap(){
+        return map;
     }
 
     /**

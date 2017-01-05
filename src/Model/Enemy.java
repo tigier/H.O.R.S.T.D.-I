@@ -1,6 +1,5 @@
 package Model;
 
-import Control.MainController;
 import View.DrawableObject;
 import View.DrawingPanel;
 
@@ -11,33 +10,35 @@ import java.awt.geom.Rectangle2D;
  * Created by 204g14 on 09.12.2016.
  */
 public class Enemy implements DrawableObject{
-    private int hp;
-    private int speed;
-    private boolean air;
-    private int x;
-    private int y;
-    private int direction;
-    private MainController controller;
 
     protected Rectangle2D.Double rectangle;
+    private int hp;
+    private int speed;
+    private int x;
+    private int y;
+    private Stack<int[]> waypoints;
+    private int direction;
+    int scl;
 
-
-    public Enemy(int hp, int speed, boolean air, int x, int y, int scl, MainController controller){
-        this.controller= controller;
+    public Enemy(int hp, int speed, int x, int y, Stack waypoints, int scl){
+        this. scl = scl;
         this.hp = hp;
-        this.speed = speed;
-        this.x = x;
-        this.y = y;
-        this.air = air;
+        this. speed = speed;
+        this.x = x*scl;
+        this.y = y*scl;
+        this.waypoints = waypoints;
+    }
 
-        direction = 3;
-        rectangle = new Rectangle2D.Double();
-
+    public int[] getCoord(){
+        int[] h = new int[2];
+        h[0] = x;
+        h[1] = y;
+        return h;
     }
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-
+        rectangle = new Rectangle2D.Double();
         g2d.setColor(new Color(38, 28, 212));
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
@@ -46,38 +47,50 @@ public class Enemy implements DrawableObject{
 
     }
 
-    @Override
-    public void update(double dt) {
-        move();
-        checkFinish();
-
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void checkFinish() {
-       if(this.getX()< -10){
-            controller.close();
-       }
+    public void checkDirection(){
+        if(waypoints.top()[0]>x){
+            direction = 0;
+        }else if(waypoints.top()[1] > y){
+            direction = 1;
+        }else if(waypoints.top()[0] < x){
+            direction = 2;
+        }else if(waypoints.top()[1] < y){
+            direction = 3;
+        }
     }
 
     public void move(){
+        checkDirection();
 
         if(direction == 0){
-            y-= speed;
+            x =+ speed;
         }else if(direction == 1){
-            x+= speed;
+            y =+ speed;
         }else if(direction == 2){
-            y+= speed;
+            x =- speed;
         }else if(direction == 3){
-            x-= speed;
+            y =- speed;
+        }
+
+
+    }
+
+    public void checkWaypoints(){
+        if(this.x ==waypoints.top()[0] && this.y ==waypoints.top()[1]){
+            waypoints.pop();
+        }
+
+        if(waypoints.top()== null){
+            //TODO Hier muss das Programm beendet werden
         }
     }
+
+    @Override
+    public void update(double dt) {
+        checkWaypoints();
+        move();
+
+    }
+
 
 }

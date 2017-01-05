@@ -1,11 +1,10 @@
 package Control;
 
 import Model.Enemy;
+import Model.Map;
 import Model.Queue;
 import View.DrawingPanel;
 import View.MainFrame;
-
-import java.awt.event.WindowEvent;
 
 
 /**
@@ -16,14 +15,12 @@ private Queue<Enemy> EnemyQueue;
 private int scl;
 private int[] spawn;
 MainFrame frame;
-
+Map map;
 
     public MainController(MainFrame frame,int scl){
         this.frame = frame;
-        spawn = new int[2];
-        spawn[0] = 19;
-        spawn[1] = 4;
-
+        map = frame.getMap();
+        spawn = map.getWaypoints().top();
         this.scl= scl;
         loadLvl();
 
@@ -33,13 +30,11 @@ MainFrame frame;
         return frame.getActiveDrawingPanel();
     }
 
-    public void close(){
-        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-    }
-
     public void loadLvl(){
         EnemyQueue = new Queue<>();
-        EnemyQueue.enqueue(new Enemy(5,5, false, spawn[0]*scl, spawn[1]*scl+scl/2-5, scl, this));
+        EnemyQueue.enqueue(new Enemy(5,1, map.getWaypoints().top()[0],map.getWaypoints().top()[1], map.getWaypoints(), scl));
+        getPanel().addObject(EnemyQueue.front());
         getPanel().addObject(EnemyQueue.front());
     }
+
 }
