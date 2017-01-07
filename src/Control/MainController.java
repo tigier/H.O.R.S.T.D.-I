@@ -1,9 +1,6 @@
 package Control;
 
-import Model.Enemy;
-import Model.List;
-import Model.Map;
-import Model.Queue;
+import Model.*;
 import View.DrawingPanel;
 import View.MainFrame;
 
@@ -41,15 +38,9 @@ public class MainController {
         return frame.getActiveDrawingPanel();
     }
 
-    public void loadLvl(){
-        EnemyQueue = new Queue<>();
-
-        for(int i= 0 ;i< 50;i++) {
-
-            if((i%10) == 1){
-                EnemyQueue.enqueue(new Enemy(5, 1, 19, 5, map.getWaypoints(), scl));
-                getPanel().addObject(EnemyQueue.front());
-            }
+    public void loadLvl() {
+        for (int i = 0; i < 10; i++) {
+            getPanel().addObject(new Enemy(5, 3, 19+i, 5,scl));
         }
 
     }

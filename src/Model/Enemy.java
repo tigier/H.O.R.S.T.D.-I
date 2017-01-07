@@ -16,17 +16,17 @@ public class Enemy implements DrawableObject{
     private int speed;
     private int x;
     private int y;
-    private Stack<int[]> waypoints;
+
     private int path;
     int scl;
 
-    public Enemy(int hp, int speed, int x, int y, Stack waypoints, int scl){
+    public Enemy(int hp, int speed, int x, int y, int scl){
         this. scl = scl;
         this.hp = hp;
         this.speed = speed;
         this.x = x*scl;
         this.y = y*scl;
-        this.waypoints = waypoints;
+
         createGraphics();
     }
 
@@ -53,25 +53,27 @@ public class Enemy implements DrawableObject{
 
 
     public void move(){
-
-        if(path< 230){
+        if(x>19*scl){
             x--;
-
+        }else if(path< 230){
+            x--;
+            path++;
         }else if(path < 380){
             y++;
+            path++;
         }else if(path < 780){
             x--;
+            path++;
         }else if(path < 930) {
             y--;
+            path++;
         }else if(path < 1500){
             x--;
+            path++;
         }else if(path < 2000){
             //TODO Hier muss das Programm beendet werden
             System.out.println("fertig");
         }
-        path++;
-
-
     }
 
 
