@@ -1,5 +1,6 @@
 package View;
 
+import Control.MainController;
 import Model.*;
 
 import javax.swing.*;
@@ -47,6 +48,27 @@ public class MainFrame extends JFrame {
 
 
         this.scl = scl;
+
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent keyEvent) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent keyEvent) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent keyEvent) {
+                if(keyEvent == KeyEvent.VK_Q){
+                    activePanel.addObject(new Tower(50,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
+                }
+            }
+        });
+
+
 
         addMouseListener(new MouseListener() {
             @Override
