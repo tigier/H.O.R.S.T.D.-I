@@ -28,11 +28,10 @@ public class MainController {
         this.scl= scl;
         loadLvl();
         level = 10;
-        addTower();
     }
 
     public void addTower(){
-        getPanel().addObject(new Tower(50, 150,130,scl));
+        getPanel().addObject(new Tower(50,100,100,scl));
     }
 
     public DrawingPanel getPanel(){
