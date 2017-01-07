@@ -1,5 +1,6 @@
 package Model;
 import Control.MainController;
+import View.DrawableObject;
 import View.DrawingPanel;
 import View.InteractableObject;
 
@@ -12,7 +13,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * Created by 204g14 on 09.12.2016.
  */
-public class Tower extends Field implements InteractableObject {
+public class Tower extends Field implements DrawableObject {
 
     private MainController controler;
     private Enemy target;
@@ -32,6 +33,7 @@ public class Tower extends Field implements InteractableObject {
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
+        createGraphics();
         g2d.setColor(new Color(212, 0, 28));
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
@@ -58,23 +60,8 @@ public class Tower extends Field implements InteractableObject {
 
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
     public void update(double dt) {
         updateEnemy();
-
-    }
-
-    @Override
-    public void keyReleased(int key) {
-
-    }
-
-    @Override
-    public void keyPressed(int key) {
 
     }
 }
