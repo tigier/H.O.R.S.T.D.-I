@@ -62,7 +62,7 @@ public class MainFrame extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
-                if(keyEvent == KeyEvent.VK_Q){
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q){
                     activePanel.addObject(new Tower(50,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
                 }
             }
