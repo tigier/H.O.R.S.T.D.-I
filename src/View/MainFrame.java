@@ -25,6 +25,8 @@ public class MainFrame extends JFrame {
     private Map map;
     private Field[][] field;
     private MainController controller;
+    private Robot robot;
+
 
     /**
      * Konstruktor
@@ -46,7 +48,11 @@ public class MainFrame extends JFrame {
         setTitle(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
 
         this.scl = scl;
 
@@ -62,8 +68,8 @@ public class MainFrame extends JFrame {
             }
 
             @Override
-            public void keyReleased(KeyEvent keyEvent) {
-                if(keyEvent.getKeyCode() == KeyEvent.VK_Q){
+            public void keyReleased(KeyEvent keyEvent ) {
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint() == new Color(212, 125, 31)){
                     activePanel.addObject(new Tower(50,MouseInfo.getPointerInfo().getLocation().x/scl*scl,MouseInfo.getPointerInfo().getLocation().y/scl*scl,scl));
                 }
             }
@@ -71,38 +77,17 @@ public class MainFrame extends JFrame {
 
 
 
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                activePanel.addObject(new Tower(5,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-
         map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();
 
     }
 
+    private Color getColorAtPoint() {
+        if(robot != null){
+            return robot.getPixelColor(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y);
+        }
+        return null;
+    }
     public void loadMap(){
 
         field = new Field[activePanel.getWidth()/scl][activePanel.getHeight()/scl];
