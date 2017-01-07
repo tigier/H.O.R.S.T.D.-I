@@ -44,7 +44,7 @@ public class Map {
         p[0] = 14;
         p[1] = 5;
         waypoints.push(p);
-        waypoints.push(spawn);
+
 
         map = new int[x][y];
 

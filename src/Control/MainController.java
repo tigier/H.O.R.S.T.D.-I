@@ -1,27 +1,25 @@
 package Control;
 
-import Model.Enemy;
-import Model.List;
-import Model.Map;
-import Model.Queue;
-import Model.Tower;
+import Model.*;
 import View.DrawingPanel;
 import View.MainFrame;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
+
 
 
 /**
  * Created by 204g14 on 09.12.2016.
  */
 public class MainController {
-private Queue<Enemy> EnemyQueue;
+    private Queue<Enemy> EnemyQueue;
+    private int level;
+    private int scl;
+    private int[] spawn;
+    private MainFrame frame;
+    private Map map;
 
-private int scl;
-private int[] spawn;
-MainFrame frame;
-Map map;
+
+
 
     public MainController(MainFrame frame,int scl){
         this.frame = frame;
@@ -29,7 +27,9 @@ Map map;
         spawn = map.getWaypoints().top();
         this.scl= scl;
         loadLvl();
-        EnemyQueue = new Queue<Enemy>();
+        level = 10;
+
+
 
 
     }
@@ -38,18 +38,10 @@ Map map;
         return frame.getActiveDrawingPanel();
     }
 
-    public void loadLvl(){
-
-        for(int i= 0; i<5 ; i++){
-            EnemyQueue.enqueue(new Enemy(5,1, map.getWaypoints().top()[0],map.getWaypoints().top()[1]-i*5, map.getWaypoints(), scl));
+    public void loadLvl() {
+        for (int i = 0; i < 10; i++) {
+            getPanel().addObject(new Enemy(5, 3, 19+i, 5,scl));
         }
-
-        while(EnemyQueue.front() != null){
-            getPanel().addObject(EnemyQueue.front());
-            EnemyQueue.dequeue();
-        }
-
 
     }
-
 }
