@@ -25,6 +25,7 @@ public class Tower extends Field implements InteractableObject {
         this.range = range;
         this.x = x;
         this.y = y;
+        createGraphics();
     }
 
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
@@ -35,7 +36,7 @@ public class Tower extends Field implements InteractableObject {
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
         g2d.draw(rectangle);
-
+        rectangle.setFrame(x,y,50,50);
     }
 
     public void shotFire(){
@@ -63,7 +64,6 @@ public class Tower extends Field implements InteractableObject {
 
     @Override
     public void update(double dt) {
-        rectangle.setFrame(x,y,50,50);
         updateEnemy();
 
     }

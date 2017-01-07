@@ -24,6 +24,7 @@ public class MainFrame extends JFrame {
     private ArrayList<DrawingPanel> panels;
     private Map map;
     private Field[][] field;
+    private MainController controller;
 
     /**
      * Konstruktor
@@ -62,7 +63,7 @@ public class MainFrame extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
-                if(keyEvent == KeyEvent.VK_Q){
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q){
                     activePanel.addObject(new Tower(50,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
                 }
             }
@@ -83,7 +84,7 @@ public class MainFrame extends JFrame {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                getActiveDrawingPanel().addObject(new Tower(5,MouseInfo.getPointerInfo().getLocation().x/scl,MouseInfo.getPointerInfo().getLocation().y/scl,scl));
+                activePanel.addObject(new Tower(5,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
             }
 
             @Override

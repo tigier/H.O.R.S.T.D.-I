@@ -28,10 +28,11 @@ public class MainController {
         this.scl= scl;
         loadLvl();
         level = 10;
+        addTower();
+    }
 
-
-
-
+    public void addTower(){
+        getPanel().addObject(new Tower(50, 150,130,scl));
     }
 
     public DrawingPanel getPanel(){
@@ -42,6 +43,7 @@ public class MainController {
         for (int i = 0; i < 10; i++) {
             getPanel().addObject(new Enemy(5, 3, 19+i, 5,scl));
         }
+
 
     }
 }
