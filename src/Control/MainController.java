@@ -8,16 +8,21 @@ import View.DrawingPanel;
 import View.MainFrame;
 
 
+
+
 /**
  * Created by 204g14 on 09.12.2016.
  */
 public class MainController {
-private Queue<Enemy> EnemyQueue;
+    private Queue<Enemy> EnemyQueue;
+    private int level;
+    private int scl;
+    private int[] spawn;
+    private MainFrame frame;
+    private Map map;
 
-private int scl;
-private int[] spawn;
-MainFrame frame;
-Map map;
+
+
 
     public MainController(MainFrame frame,int scl){
         this.frame = frame;
@@ -25,7 +30,9 @@ Map map;
         spawn = map.getWaypoints().top();
         this.scl= scl;
         loadLvl();
-        EnemyQueue = new Queue<Enemy>();
+        level = 10;
+
+
 
 
     }
@@ -35,18 +42,15 @@ Map map;
     }
 
     public void loadLvl(){
+        EnemyQueue = new Queue<>();
 
-        for(int i= 0; i<5 ; i++){
-            EnemyQueue.enqueue(new Enemy(5,1, map.getWaypoints().top()[0],map.getWaypoints().top()[1]-i*5, map.getWaypoints(), scl));
+        for(int i= 0 ;i< 50;i++) {
+
+            if((i%10) == 1){
+                EnemyQueue.enqueue(new Enemy(5, 1, 19, 5, map.getWaypoints(), scl));
+                getPanel().addObject(EnemyQueue.front());
+            }
         }
-
-        while(EnemyQueue.front() != null){
-            getPanel().addObject(EnemyQueue.front());
-            EnemyQueue.dequeue();
-        }
-
 
     }
-
-
 }

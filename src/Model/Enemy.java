@@ -23,7 +23,7 @@ public class Enemy implements DrawableObject{
     public Enemy(int hp, int speed, int x, int y, Stack waypoints, int scl){
         this. scl = scl;
         this.hp = hp;
-        this. speed = speed;
+        this.speed = speed;
         this.x = x*scl;
         this.y = y*scl;
         this.waypoints = waypoints;
