@@ -56,12 +56,12 @@ public class MainFrame extends JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                activePanel.addObject(new Tower(5,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
+
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                getActiveDrawingPanel().addObject(new Tower(5,MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y,scl));
             }
 
             @Override
