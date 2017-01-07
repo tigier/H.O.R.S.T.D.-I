@@ -12,7 +12,7 @@ import java.awt.geom.Rectangle2D;
  * Created by 204g14 on 09.12.2016.
  */
 public class Tower extends Field implements InteractableObject {
-    private List<Shot> shots;
+
     private MainController controler;
     private Enemy target;
     private int range;
@@ -22,7 +22,6 @@ public class Tower extends Field implements InteractableObject {
     public Tower(int range,int x,int y, int scl){
         super(x,y,scl);
         this.range = range;
-        shots = new List<>();
         this.x = x;
         this.y = y;
     }
@@ -37,7 +36,8 @@ public class Tower extends Field implements InteractableObject {
         rectangle.setFrame(x,y,50,50);
     }
 
-    public void shotFire(Shot pShot){
+    public void shotFire(){
+        // er malt eine linie zum gegener
 
     }
 
