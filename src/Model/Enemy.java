@@ -27,6 +27,7 @@ public class Enemy implements DrawableObject{
         this.x = x*scl;
         this.y = y*scl;
         this.waypoints = waypoints;
+        createGraphics();
     }
 
     public int[] getCoord(){
@@ -36,14 +37,16 @@ public class Enemy implements DrawableObject{
         return h;
     }
 
+    private void createGraphics(){rectangle = new Rectangle2D.Double();}
+
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-        rectangle = new Rectangle2D.Double();
+        //rectangle = new Rectangle2D.Double();
         g2d.setColor(new Color(38, 28, 212));
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
         g2d.draw(rectangle);
-        rectangle.setFrame(x,y,20,20);
+        rectangle.setFrame(x,y+scl/3,15,15);
 
     }
 
