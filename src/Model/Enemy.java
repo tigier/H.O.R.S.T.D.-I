@@ -17,7 +17,7 @@ public class Enemy implements DrawableObject{
     private int x;
     private int y;
     private Stack<int[]> waypoints;
-    private int direction;
+    private int path;
     int scl;
 
     public Enemy(int hp, int speed, int x, int y, Stack waypoints, int scl){
@@ -42,6 +42,7 @@ public class Enemy implements DrawableObject{
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
         //rectangle = new Rectangle2D.Double();
+
         g2d.setColor(new Color(38, 28, 212));
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
@@ -50,48 +51,37 @@ public class Enemy implements DrawableObject{
 
     }
 
-    public void checkDirection(){
-        if(waypoints.top()[0]>x){
-            direction = 0;
-        }else if(waypoints.top()[1] > y){
-            direction = 1;
-        }else if(waypoints.top()[0] < x){
-            direction = 2;
-        }else if(waypoints.top()[1] < y){
-            direction = 3;
-        }
-    }
 
     public void move(){
-        checkDirection();
 
-        if(direction == 0){
-            x =+ speed;
-        }else if(direction == 1){
-            y =+ speed;
-        }else if(direction == 2){
-            x =- speed;
-        }else if(direction == 3){
-            y =- speed;
-        }
+        if(path< 230){
+            x--;
 
-
-    }
-
-    public void checkWaypoints(){
-        if(this.x ==waypoints.top()[0] && this.y ==waypoints.top()[1]){
-            waypoints.pop();
-        }
-
-        if(waypoints.top()== null){
+        }else if(path < 380){
+            y++;
+        }else if(path < 780){
+            x--;
+        }else if(path < 930) {
+            y--;
+        }else if(path < 1500){
+            x--;
+        }else if(path < 2000){
             //TODO Hier muss das Programm beendet werden
+            System.out.println("fertig");
         }
+        path++;
+
+
     }
+
 
     @Override
     public void update(double dt) {
-        checkWaypoints();
-        move();
+
+        for(int i = 0; i<speed ; i++){
+            move();
+        }
+
 
     }
 
