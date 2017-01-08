@@ -20,6 +20,7 @@ public class Tower extends Field implements DrawableObject {
     private int range;
     private int[] pos;
     private int reload;
+    private boolean firstTower = true;
 
     static List<Enemy> EnemyList;
 
@@ -36,9 +37,15 @@ public class Tower extends Field implements DrawableObject {
         pos[1] = y;
         reload = 50;
         this.controller = controller;
-        EnemyList = controller.getEnemyList();
+        firstTower();
     }
 
+    public void firstTower(){
+        if(firstTower==true){
+            EnemyList = controller.getEnemyList();
+            firstTower = false;
+        }
+    }
     public void setEnemyList(){
         if(EnemyList.isEmpty()) {
             EnemyList = controller.getEnemyList();
@@ -103,5 +110,10 @@ public class Tower extends Field implements DrawableObject {
         updateEnemy();
         shotFire();
 
+    }
+
+    public static List getEnemylist(){
+        System.out.print(EnemyList.isEmpty());
+        return EnemyList;
     }
 }

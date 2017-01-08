@@ -21,7 +21,6 @@ public class MainController {
     private MainFrame frame;
     private Map map;
     private int money;
-    public int killedEnemy;
 
 
     public MainController(MainFrame frame, int scl) {
@@ -69,7 +68,6 @@ public class MainController {
     }
 
     public void killedEnemy(){
-        killedEnemy++;
         money = money +4;
         frame.updateGold();
         restartLevel();
@@ -77,10 +75,7 @@ public class MainController {
     }
 
     public void restartLevel(){
-        if(killedEnemy >= 20){
-            loadLvl();
-            killedEnemy=0;
-        }
+        if(Tower.getEnemylist().isEmpty()) loadLvl();
     }
 
 
