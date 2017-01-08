@@ -20,6 +20,7 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
 
     // Referenzen
     private ArrayList<DrawableObject> drawableObjects;
+    private Iterator<DrawableObject> iterator;
 
     /**
      * Konstruktor
@@ -49,13 +50,18 @@ public class DrawingPanel extends JPanel implements ActionListener, KeyListener,
         dt = (int) ((elapsedTime / 1000000L)+0.5);
         if ( dt == 0 ) dt = 1;
         Graphics2D g2d = (Graphics2D) g;
-        Iterator<DrawableObject> iterator = drawableObjects.iterator();
+        resetIterator();
         while (iterator.hasNext()){
             DrawableObject tempDO = iterator.next();
 
             tempDO.draw(this,g2d);
             tempDO.update((double)dt/1000);
         }
+    }
+
+    public void resetIterator(){
+        iterator = null;
+        iterator = drawableObjects.iterator();
     }
 
     /**

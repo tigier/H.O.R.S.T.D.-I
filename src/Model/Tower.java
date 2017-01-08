@@ -53,12 +53,13 @@ public class Tower extends Field implements DrawableObject {
 
     public void shotFire(){
         if(reload  >= 70 && target != null){
-            //controller.drawShot(x,y,target.getX(),target.getY());
+            controller.drawShot(x,y,target.getX(),target.getY());
             if(target.getHit()){
                 EnemyList.remove();
                 reload = reload -50;
                 controller.killedEnemy();
                 target=null;
+                controller.getPanel().resetIterator();
             }
 
         }else if(reload <90){

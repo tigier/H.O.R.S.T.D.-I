@@ -1,10 +1,12 @@
 package Control;
 
 import Model.*;
+import Model.List;
 import View.DrawingPanel;
 import View.MainFrame;
 
 import javax.sound.sampled.Line;
+import java.awt.*;
 import java.awt.geom.Line2D;
 
 
@@ -53,6 +55,7 @@ public class MainController {
             EnemyList.append(pivot);
             getPanel().addObject(pivot);
         }
+        getPanel().resetIterator();
     }
 
     public List<Enemy> getEnemyList(){
@@ -60,7 +63,7 @@ public class MainController {
     }
 
     public void drawShot(int x1, int y1, int x2,int y2){
-        //getPanel().addObject(new Shot(x1,y1,x2,y2));
+        getPanel().addObject(new Shot(x1,y1,x2,y2));
         frame.drawShot(x1,y1,x2,y2);
     }
 
