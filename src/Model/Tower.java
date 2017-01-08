@@ -21,7 +21,7 @@ public class Tower extends Field implements DrawableObject {
     private int[] pos;
     private int reload;
 
-    List<Enemy> EnemyList;
+    static List<Enemy> EnemyList;
 
     private Rectangle2D rectangle;
 
@@ -37,7 +37,12 @@ public class Tower extends Field implements DrawableObject {
         reload = 50;
         this.controller = controller;
         EnemyList = controller.getEnemyList();
+    }
 
+    public void setEnemyList(){
+        if(EnemyList.isEmpty()) {
+            EnemyList = controller.getEnemyList();
+        }
     }
 
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
@@ -53,7 +58,7 @@ public class Tower extends Field implements DrawableObject {
 
     public void shotFire(){
         if(reload  >= 70 && target != null){
-            controller.drawShot(x,y,target.getX(),target.getY());
+            //controller.drawShot(x,y,target.getX(),target.getY());
             if(target.getHit()){
                 EnemyList.remove();
                 reload = reload -50;
@@ -94,6 +99,7 @@ public class Tower extends Field implements DrawableObject {
 
     @Override
     public void update(double dt) {
+        setEnemyList();
         updateEnemy();
         shotFire();
 

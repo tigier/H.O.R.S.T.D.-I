@@ -55,6 +55,7 @@ public class MainController {
             EnemyList.append(pivot);
             getPanel().addObject(pivot);
         }
+
         getPanel().resetIterator();
     }
 
