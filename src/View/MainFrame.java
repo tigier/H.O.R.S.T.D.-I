@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 /**
@@ -53,6 +54,9 @@ public class MainFrame extends JFrame {
 
 
         money = new JLabel("100");
+        money.setBounds(500,10,10,10);
+        getActiveDrawingPanel().add(money);
+        money.setVisible(true);
 
 
 
@@ -81,7 +85,8 @@ public class MainFrame extends JFrame {
                 Color color = new Color(212, 125, 31);
                 if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >30){
                     controller.buildTower();
-                    activePanel.addObject(new Tower(50,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl));
+                    activePanel.addObject(new Tower(250,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl, controller));
+                    money.setText(Integer.toString(controller.getMoney()));
                 }
             }
         });
@@ -90,6 +95,15 @@ public class MainFrame extends JFrame {
 
         map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();
+
+    }
+
+    public void updateGold(){
+        money.setText(Integer.toString(controller.getMoney()));
+    }
+
+    public void drawShot(int x1, int y1, int x2,int y2){
+        getGraphics().drawLine(x1,y1,x2,y2);
 
     }
 

@@ -15,18 +15,29 @@ import java.awt.geom.Rectangle2D;
  */
 public class Tower extends Field implements DrawableObject {
 
-    private MainController controler;
+    private MainController controller;
     private Enemy target;
     private int range;
+    private int[] pos;
+    private int reload;
+
+    List<Enemy> EnemyList;
 
     private Rectangle2D rectangle;
 
-    public Tower(int range,int x,int y, int scl){
+    public Tower(int range,int x,int y, int scl,MainController controller){
         super(x,y,scl);
         this.range = range;
         this.x = x;
         this.y = y;
         createGraphics();
+        pos = new int[2];
+        pos[0] = x;
+        pos[1] = y;
+        reload = 50;
+        this.controller = controller;
+        EnemyList = controller.getEnemyList();
+
     }
 
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
@@ -41,8 +52,18 @@ public class Tower extends Field implements DrawableObject {
     }
 
     public void shotFire(){
-        // er malt eine linie zum gegener
+        if(reload  >= 70 && target != null){
+            //controller.drawShot(x,y,target.getX(),target.getY());
+            if(target.getHit()){
+                EnemyList.remove();
+                reload = reload -50;
+                controller.killedEnemy();
+                target=null;
+            }
 
+        }else if(reload <90){
+            reload++;
+        }
     }
 
     public int getY() {
@@ -53,14 +74,27 @@ public class Tower extends Field implements DrawableObject {
         return x;
     }
 
-    public void updateEnemy(){
+    public void updateEnemy() {
+        int distance = range;
+        EnemyList.toFirst();
+        while (EnemyList.hasAccess()) {
+            int xDistance = Math.abs(EnemyList.getContent().getX() - this.getX());
+            int yDistance = Math.abs(EnemyList.getContent().getY() - this.getY());
 
+            if (xDistance + yDistance < distance && xDistance + yDistance<range) {
+                distance = xDistance - yDistance;
+                target = EnemyList.getContent();
+            }
+            EnemyList.next();
+        }
     }
+
 
 
     @Override
     public void update(double dt) {
         updateEnemy();
+        shotFire();
 
     }
 }
