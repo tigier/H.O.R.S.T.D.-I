@@ -17,6 +17,7 @@ public class MainController {
     private int[] spawn;
     private MainFrame frame;
     private Map map;
+    private int money;
 
 
 
@@ -28,10 +29,16 @@ public class MainController {
         this.scl= scl;
         loadLvl();
         level = 10;
+        money = 100;
+        frame.setController(this);
     }
 
-    public void addTower(){
-        getPanel().addObject(new Tower(50,100,100,scl));
+    public int getMoney(){
+        return money;
+    }
+
+    public void buildTower(){
+        money = money -30;
     }
 
     public DrawingPanel getPanel(){

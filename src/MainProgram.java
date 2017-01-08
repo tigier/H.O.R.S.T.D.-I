@@ -17,6 +17,6 @@ public class MainProgram {
     }
 
     private static void setup(){
-        new MainController(new MainFrame("Hyper Overloaded Remastered Super Tower Defense I",0,0,1000,850,50),50);
+        new MainController(new MainFrame("Hyper Overloaded Remastered Super Tower Defense I",30,10,1010,800,50),50);
     }
 }

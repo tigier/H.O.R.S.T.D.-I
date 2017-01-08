@@ -27,6 +27,8 @@ public class MainFrame extends JFrame {
     private MainController controller;
     private Robot robot;
 
+    private JLabel money;
+
 
     /**
      * Konstruktor
@@ -48,6 +50,13 @@ public class MainFrame extends JFrame {
         setTitle(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+
+        money = new JLabel("100");
+
+
+
+
         try {
             robot = new Robot();
         } catch (AWTException e) {
@@ -68,9 +77,11 @@ public class MainFrame extends JFrame {
             }
 
             @Override
-            public void keyReleased(KeyEvent keyEvent ) {
-                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint() == new Color(212, 125, 31)){
-                    activePanel.addObject(new Tower(50,MouseInfo.getPointerInfo().getLocation().x/scl*scl,MouseInfo.getPointerInfo().getLocation().y/scl*scl,scl));
+            public void keyReleased(KeyEvent keyEvent) {
+                Color color = new Color(212, 125, 31);
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >30){
+                    controller.buildTower();
+                    activePanel.addObject(new Tower(50,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl));
                 }
             }
         });
@@ -82,10 +93,16 @@ public class MainFrame extends JFrame {
 
     }
 
+    public void setController(MainController controller){
+        this.controller = controller;
+    }
+
+
     private Color getColorAtPoint() {
         if(robot != null){
             return robot.getPixelColor(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y);
         }
+
         return null;
     }
     public void loadMap(){
