@@ -50,6 +50,7 @@ public class Tower extends Field implements DrawableObject {
     public void setEnemyList(){
         if(EnemyList.isEmpty()) {
             EnemyList = controller.getEnemyList();
+
         }
     }
 

@@ -34,6 +34,7 @@ public class MainController {
         money = 100;
         frame.setController(this);
 
+
     }
 
     public int getMoney() {
@@ -72,18 +73,20 @@ public class MainController {
             frame.updateGold();
             restartLevel();
             killedEnemy++;
-
+            removeFromList();
 
     }
 
+    public void removeFromList(){
+        EnemyList.remove();
+    }
+
     public void restartLevel(){
-        if(killedEnemy >= 19){
+        if(EnemyList.isEmpty()){
             loadLvl();
             killedEnemy=0;
             getPanel().resetIterator();
-            Tower.setEnemyList();
         }
-        System.out.println(Integer.toString(killedEnemy));
     }
 
 
