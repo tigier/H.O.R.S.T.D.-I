@@ -38,6 +38,7 @@ public class Tower extends Field implements DrawableObject {
         reload = 50;
         this.controller = controller;
         firstTower();
+
     }
 
     public void firstTower(){

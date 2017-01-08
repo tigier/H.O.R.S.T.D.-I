@@ -22,6 +22,7 @@ public class MainController {
     private Map map;
     private int money;
 
+    private int killedEnemy;
 
     public MainController(MainFrame frame, int scl) {
         this.frame = frame;
@@ -54,7 +55,6 @@ public class MainController {
             EnemyList.append(pivot);
             getPanel().addObject(pivot);
         }
-
         getPanel().resetIterator();
     }
 
@@ -68,14 +68,22 @@ public class MainController {
     }
 
     public void killedEnemy(){
-        money = money +4;
-        frame.updateGold();
-        restartLevel();
+            money = money + 4;
+            frame.updateGold();
+            restartLevel();
+            killedEnemy++;
+
 
     }
 
     public void restartLevel(){
-        if(Tower.getEnemylist().isEmpty()) loadLvl();
+        if(killedEnemy >= 19){
+            loadLvl();
+            killedEnemy=0;
+            getPanel().resetIterator();
+            Tower.setEnemyList();
+        }
+        System.out.println(Integer.toString(killedEnemy));
     }
 
 

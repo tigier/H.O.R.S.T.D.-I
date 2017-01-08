@@ -19,6 +19,7 @@ public class Enemy implements DrawableObject{
     public boolean dead;
     private int path;
     int scl;
+    private boolean hit;
 
     public Enemy(int hp, int speed, int x, int y, int scl){
         this. scl = scl;
@@ -28,15 +29,19 @@ public class Enemy implements DrawableObject{
         this.y = y*scl;
         dead = false;
         createGraphics();
+        hit= false;
     }
 
 
     public boolean getHit(){
-        this.hp--;
-        if(hp <=0){
-            dead = true;
-            x = -5000;
-            return true;
+        if(hit == false) {
+            hit=true;
+            this.hp--;
+            if (hp <= 0) {
+                dead = true;
+                x = -5000;
+                return true;
+            }
         }
         return false;
     }
