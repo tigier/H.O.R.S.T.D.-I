@@ -128,7 +128,7 @@ public class Enemy implements DrawableObject{
             x--;
             path++;
         }else if(path < 2000){
-            System.out.println("Sorry You Lost");
+            System.out.println("Exception in thread \"AWT-EventQueue-0\"Exception.YouLost: But you hit wave 42.");
                     System.exit(1);
         }
     }
