@@ -122,7 +122,6 @@ public class MainController {
             loadLvl();
             getPanel().resetIterator();
         }
-        System.out.println(killedEnemy);
     }
 
 
