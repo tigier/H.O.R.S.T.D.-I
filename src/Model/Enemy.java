@@ -64,10 +64,10 @@ public class Enemy implements DrawableObject{
      * wenn es kurz vorher angegriffen wurde erhöht es nur den timer
      * @return der return ist wichtig für den MainController ob ein gegner gestorben ist
      */
-    public boolean getHit(){
+    public boolean getHit(int dmg){
         if(hit == 0) {
             hit=20;
-            this.hp = hp-1;
+            this.hp = hp-dmg;
             if (hp <= 0) {
                 dead = true;
                 x = -5000;

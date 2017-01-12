@@ -31,7 +31,7 @@ public class MainController {
         this.scl = scl;
         loadLvl();
         level = 1;
-        money = 100;
+        money = 300;
         frame.setController(this);
 
     }
@@ -52,10 +52,10 @@ public class MainController {
     }
 
     /**
-     * Verringert den Geldwert um den preis eines Turms
+     * Verringert den Geldwert um den preis x
      */
-    public void buildTower() {
-        money = money - 37;
+    public void spentMoney(int x){
+        money=money-x;
     }
 
     /**

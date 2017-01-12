@@ -20,6 +20,8 @@ public class Tower extends Field implements DrawableObject {
     private int range;
     private int[] pos;
     private int reload;
+    private int dmg;
+
 
 
 
@@ -48,10 +50,22 @@ public class Tower extends Field implements DrawableObject {
     public int getX() {
         return x;
     }
+
+    public int getDmg() {
+        return dmg;
+    }
     /**
      * nur wichtig für das zeichnen des Objekts
      */
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
+
+    public void upgrade(){
+
+        dmg = dmg * 2;
+        controller.spentMoney(dmg*30);
+    }
+
+
 
     /**
      * wenn der Tower nachgeladen hat
@@ -64,7 +78,7 @@ public class Tower extends Field implements DrawableObject {
     public void shotFire(){
         if(reload  >= 70 && target != null){
             //controller.drawShot(x,y,target.getX(),target.getY());
-            if(target.getHit()){
+            if(target.getHit(dmg)){
                 controller.getEnemyList().remove();
                 controller.killedEnemy();
                 reload = reload -70;
