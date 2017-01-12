@@ -24,7 +24,7 @@ public class MainController {
 
     private int killedEnemy;
 
-    private List<Tower> towerList = new List<Tower>();
+    private List<Tower> towerList = new List<>();
 
     /**
      * Konstruktor
@@ -36,7 +36,7 @@ public class MainController {
         this.scl = scl;
         loadLvl();
         level = 1;
-        money = 10000;
+        money = 100;
         frame.setController(this);
         towerList = new List<>();
 
@@ -99,7 +99,7 @@ public class MainController {
      */
     public void killedEnemy(){
             killedEnemy++;
-            money = money + level*4;
+            money = money + level*3;
             frame.updateGold();
             restartLevel();
             removeFromList();
@@ -120,10 +120,7 @@ public class MainController {
         if(killedEnemy ==0){
             level++;
             loadLvl();
-            //EnemyList = null;
-            //killedEnemy=0;
             getPanel().resetIterator();
-            System.out.println(killedEnemy);
         }
         System.out.println(killedEnemy);
     }
