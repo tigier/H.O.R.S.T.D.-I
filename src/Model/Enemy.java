@@ -39,10 +39,10 @@ public class Enemy implements DrawableObject{
     }
 
 
-    public boolean getHit(){
+    public boolean getHit(int d){
         if(hit == 0) {
             hit=20;
-            this.hp = hp-1;
+            this.hp = hp-d;
             if (hp <= 0) {
                 dead = true;
                 x = -5000;

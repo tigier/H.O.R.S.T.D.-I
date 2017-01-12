@@ -20,6 +20,7 @@ public class Tower extends Field implements DrawableObject {
     private int range;
     private int[] pos;
     private int reload;
+    private int dmg=1;
 
 
 
@@ -57,7 +58,7 @@ public class Tower extends Field implements DrawableObject {
     public void shotFire(){
         if(reload  >= 70 && target != null){
             //controller.drawShot(x,y,target.getX(),target.getY());
-            if(target.getHit()){
+            if(target.getHit(dmg)){
                 controller.getEnemyList().remove();
                 reload = reload -70;
                 controller.killedEnemy();

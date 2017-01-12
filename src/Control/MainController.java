@@ -44,6 +44,10 @@ public class MainController {
         money = money - 37;
     }
 
+    public void upgradeTower(){
+        money=money-50;
+    }
+
     public DrawingPanel getPanel() {
         return frame.getActiveDrawingPanel();
     }
@@ -94,6 +98,5 @@ public class MainController {
         }
         System.out.println(killedEnemy);
     }
-
 
 }
