@@ -87,24 +87,27 @@ public class MainFrame extends JFrame {
             public void keyReleased(KeyEvent keyEvent) {
                 Color color = new Color(212, 125, 31);
                 Color color2 = new Color(212, 22, 156);
-                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >30){
-                    controller.spentMoney(30);
-                    Tower tower = new Tower(250,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl, controller);
-                    activePanel.addObject(tower);
-                    controller.getTowerList().append(tower);
-                    money.setText(Integer.toString(controller.getMoney()));
-                }
 
-                controller.getTowerList().toFirst();
-                controller.getTowerList().getContent().toString();
-                while (controller.getTowerList().getContent().getX() != getActiveDrawingPanel().getMousePosition().x / scl * scl || controller.getTowerList().getContent().getY() != getActiveDrawingPanel().getMousePosition().y / scl * scl) {
-                    controller.getTowerList().next();
+                if(getColorAtPoint().equals(color)) {
+                    if (keyEvent.getKeyCode() == KeyEvent.VK_Q && controller.getMoney() > 30) {
+                        controller.spentMoney(30);
+                        Tower tower = new Tower(250, getActiveDrawingPanel().getMousePosition().x / scl * scl, getActiveDrawingPanel().getMousePosition().y / scl * scl, scl, controller);
+                        activePanel.addObject(tower);
+                        controller.getTowerList().append(tower);
+                    }
                 }
-                Tower tower = controller.getTowerList().getContent();
-                if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30) {
-                    tower.upgrade();
+                if(getColorAtPoint().equals(color2)){
+                    System.out.println("test");
+                    controller.getTowerList().toFirst();
+                    while ((controller.getTowerList().getContent().getX() != getActiveDrawingPanel().getMousePosition().x / scl * scl || controller.getTowerList().getContent().getY() != getActiveDrawingPanel().getMousePosition().y / scl * scl) && controller.getTowerList().hasAccess()) {
+                        controller.getTowerList().next();
+                    }
+                    Tower tower = controller.getTowerList().getContent();
+                    if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30) {
+                        tower.upgrade();
+                    }
+                    System.out.println(controller.getTowerList().getContent().getDmg());
                 }
-                System.out.println(tower.getDmg());
                 updateGold();
 
 
