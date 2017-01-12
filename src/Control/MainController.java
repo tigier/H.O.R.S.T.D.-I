@@ -24,7 +24,7 @@ public class MainController {
 
     private int killedEnemy;
 
-    private List<Tower> towerList;
+    private List<Tower> towerList = new List<Tower>();
 
     public MainController(MainFrame frame, int scl) {
         this.frame = frame;
@@ -33,7 +33,7 @@ public class MainController {
         this.scl = scl;
         loadLvl();
         level = 1;
-        money = 100;
+        money = 10000;
         frame.setController(this);
         towerList = new List<>();
 

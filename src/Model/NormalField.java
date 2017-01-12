@@ -24,7 +24,7 @@ public class NormalField extends Field implements DrawableObject {
     public void draw(DrawingPanel dp, Graphics2D g2d) {
         g2d.setColor(new Color(212, 125, 31));
         g2d.fill(rectangle);
-        g2d.setColor(new Color(80, 80, 80));
+        g2d.setColor(new Color(173, 92, 30));
         g2d.draw(rectangle);
         rectangle.setFrame(x,y,scl,scl);
     }
