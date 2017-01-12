@@ -33,7 +33,7 @@ public class MainController {
         this.scl = scl;
         loadLvl();
         level = 1;
-        money = 300;
+        money = 100;
         frame.setController(this);
         towerList = new List<>();
 

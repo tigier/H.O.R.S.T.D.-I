@@ -111,9 +111,9 @@ public class Tower extends Field implements DrawableObject {
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-        g2d.setColor(new Color(212, 22, 156));
+        g2d.setColor(new Color(232, 116, 197));
         g2d.fill(rectangle);
-        g2d.setColor(new Color(dmg*10, dmg*10, dmg*10));
+        g2d.setColor(new Color(256-dmg*30, 256-dmg*30,256-dmg*30));
         g2d.draw(rectangle);
         rectangle.setFrame(x,y,50,50);
     }
