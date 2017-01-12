@@ -103,7 +103,7 @@ public class MainFrame extends JFrame {
                         controller.getTowerList().next();
                     }
                     Tower tower = controller.getTowerList().getContent();
-                    if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30) {
+                    if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30 && tower.getDmg() < 10) {
                         tower.upgrade();
                     }
                     System.out.println(controller.getTowerList().getContent().getDmg());
