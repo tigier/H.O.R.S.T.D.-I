@@ -126,8 +126,8 @@ public class Enemy implements DrawableObject{
             x--;
             path++;
         }else if(path < 2000){
-            //TODO Hier muss das Programm beendet werden
-            System.out.println("fertig");
+            System.out.println("Sorry You Lost");
+                    System.exit(1);
         }
     }
 
