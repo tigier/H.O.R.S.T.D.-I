@@ -39,7 +39,7 @@ public class Tower extends Field implements DrawableObject {
         pos[1] = y;
         reload = 50;
         this.controller = controller;
-
+        dmg = 1;
 
     }
 
@@ -60,7 +60,6 @@ public class Tower extends Field implements DrawableObject {
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
 
     public void upgrade(){
-
         dmg = dmg * 2;
         controller.spentMoney(dmg*30);
     }

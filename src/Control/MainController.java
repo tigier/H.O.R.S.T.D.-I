@@ -89,7 +89,7 @@ public class MainController {
      */
     public void killedEnemy(){
             killedEnemy++;
-            money = money + level*2;
+            money = money + level*4;
             frame.updateGold();
             restartLevel();
             removeFromList();
