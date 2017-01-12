@@ -43,7 +43,7 @@ public class MainController {
     public void buildTower() {
         money = money - 37;
     }
-
+    //'ez'
     public void upgradeTower(){
         money=money-50;
     }
