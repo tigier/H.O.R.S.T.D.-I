@@ -30,10 +30,9 @@ public class MainController {
         spawn = map.getWaypoints().top();
         this.scl = scl;
         loadLvl();
-        level = 10;
+        level = 1;
         money = 100;
         frame.setController(this);
-
 
     }
 
@@ -42,7 +41,7 @@ public class MainController {
     }
 
     public void buildTower() {
-        money = money - 30;
+        money = money - 37;
     }
 
     public DrawingPanel getPanel() {
@@ -50,11 +49,14 @@ public class MainController {
     }
 
     public void loadLvl() {
-        EnemyList= new List<>();
-        for (int i = 0; i < 20; i++) {
+        if(EnemyList==null) {
+            EnemyList = new List<Enemy>();
+        }
+        for (int i = 0; i != 20  ; i++){
             Enemy pivot = new Enemy(level*2, 3, 19+i, 5,scl);
             EnemyList.append(pivot);
             getPanel().addObject(pivot);
+            killedEnemy--;
         }
         getPanel().resetIterator();
     }
@@ -69,10 +71,10 @@ public class MainController {
     }
 
     public void killedEnemy(){
-            money = money + 4;
+            killedEnemy++;
+            money = money + level*2;
             frame.updateGold();
             restartLevel();
-            killedEnemy++;
             removeFromList();
 
     }
@@ -82,11 +84,15 @@ public class MainController {
     }
 
     public void restartLevel(){
-        if(EnemyList.isEmpty()){
+        if(killedEnemy ==0){
+            level++;
             loadLvl();
-            killedEnemy=0;
+            //EnemyList = null;
+            //killedEnemy=0;
             getPanel().resetIterator();
+            System.out.println(killedEnemy);
         }
+        System.out.println(killedEnemy);
     }
 
 

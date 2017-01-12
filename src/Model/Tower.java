@@ -20,9 +20,9 @@ public class Tower extends Field implements DrawableObject {
     private int range;
     private int[] pos;
     private int reload;
-    private boolean firstTower = true;
 
-    static List<Enemy> EnemyList;
+
+
 
     private Rectangle2D rectangle;
 
@@ -37,22 +37,11 @@ public class Tower extends Field implements DrawableObject {
         pos[1] = y;
         reload = 50;
         this.controller = controller;
-        firstTower();
+
 
     }
 
-    public void firstTower(){
-        if(firstTower==true){
-            EnemyList = controller.getEnemyList();
-            firstTower = false;
-        }
-    }
-    public void setEnemyList(){
-        if(EnemyList.isEmpty()) {
-            EnemyList = controller.getEnemyList();
 
-        }
-    }
 
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
 
@@ -69,8 +58,8 @@ public class Tower extends Field implements DrawableObject {
         if(reload  >= 70 && target != null){
             //controller.drawShot(x,y,target.getX(),target.getY());
             if(target.getHit()){
-                EnemyList.remove();
-                reload = reload -50;
+                controller.getEnemyList().remove();
+                reload = reload -70;
                 controller.killedEnemy();
                 target=null;
                 controller.getPanel().resetIterator();
@@ -91,16 +80,16 @@ public class Tower extends Field implements DrawableObject {
 
     public void updateEnemy() {
         int distance = range;
-        EnemyList.toFirst();
-        while (EnemyList.hasAccess()) {
-            int xDistance = Math.abs(EnemyList.getContent().getX() - this.getX());
-            int yDistance = Math.abs(EnemyList.getContent().getY() - this.getY());
+        controller.getEnemyList().toFirst();
+        while (controller.getEnemyList().hasAccess()) {
+            int xDistance = Math.abs(controller.getEnemyList().getContent().getX() - this.getX());
+            int yDistance = Math.abs(controller.getEnemyList().getContent().getY() - this.getY());
 
             if (xDistance + yDistance < distance && xDistance + yDistance<range) {
                 distance = xDistance - yDistance;
-                target = EnemyList.getContent();
+                target = controller.getEnemyList().getContent();
             }
-            EnemyList.next();
+            controller.getEnemyList().next();
         }
     }
 
@@ -108,14 +97,13 @@ public class Tower extends Field implements DrawableObject {
 
     @Override
     public void update(double dt) {
-        setEnemyList();
         updateEnemy();
         shotFire();
 
     }
 
-    public static List getEnemylist(){
-        System.out.print(EnemyList.isEmpty());
-        return EnemyList;
-    }
+    //public static List getEnemylist(){
+      //  System.out.print(EnemyList.isEmpty());
+        //return EnemyList;
+
 }

@@ -83,7 +83,7 @@ public class MainFrame extends JFrame {
             @Override
             public void keyReleased(KeyEvent keyEvent) {
                 Color color = new Color(212, 125, 31);
-                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >30){
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >37){
                     controller.buildTower();
                     activePanel.addObject(new Tower(250,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl, controller));
                     money.setText(Integer.toString(controller.getMoney()));

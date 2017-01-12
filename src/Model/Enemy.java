@@ -19,7 +19,8 @@ public class Enemy implements DrawableObject{
     public boolean dead;
     private int path;
     int scl;
-    private boolean hit;
+    private int hit;
+    private int color;
 
     public Enemy(int hp, int speed, int x, int y, int scl){
         this. scl = scl;
@@ -29,20 +30,28 @@ public class Enemy implements DrawableObject{
         this.y = y*scl;
         dead = false;
         createGraphics();
-        hit= false;
+        hit= 0;
+        if(hp<15) {
+            color = hp*5;
+        }else{
+            color=hp*2;
+        }
     }
 
 
     public boolean getHit(){
-        if(hit == false) {
-            hit=true;
-            this.hp--;
+        if(hit == 0) {
+            hit=20;
+            this.hp = hp-1;
             if (hp <= 0) {
                 dead = true;
                 x = -5000;
+
                 return true;
+
             }
         }
+        hit--;
         return false;
     }
 
@@ -55,7 +64,7 @@ public class Enemy implements DrawableObject{
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
         if(dead !=true) {
-            g2d.setColor(new Color(5*hp, 15, 13));
+            g2d.setColor(new Color(color, 15, 13));
             g2d.fill(rectangle);
             g2d.setColor(new Color(0, 0, 0));
             g2d.draw(rectangle);
