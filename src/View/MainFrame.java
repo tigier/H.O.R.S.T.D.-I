@@ -96,15 +96,15 @@ public class MainFrame extends JFrame {
                 }
 
                 towerList.toFirst();
-                while (towerList.getContent().getX() != getActiveDrawingPanel().getMousePosition().x / scl * scl && towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().y / scl * scl && towerList.hasAccess()) {
+                while (towerList.getContent().getX() != getActiveDrawingPanel().getMousePosition().x / scl * scl || towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().y / scl * scl) {
                     towerList.next();
                 }
                 Tower tower = towerList.getContent();
                 if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30) {
                     tower.upgrade();
                 }
-
-                money.setText(Integer.toString(controller.getMoney()));
+                System.out.println(tower.getDmg());
+                updateGold();
 
 
             }
