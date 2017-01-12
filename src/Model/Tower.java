@@ -60,8 +60,9 @@ public class Tower extends Field implements DrawableObject {
     private void createGraphics(){rectangle = new Rectangle2D.Double();}
 
     public void upgrade(){
-        dmg = dmg * 2;
         controller.spentMoney(dmg*30);
+        dmg = dmg * 2;
+
     }
 
 
@@ -112,7 +113,7 @@ public class Tower extends Field implements DrawableObject {
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-        g2d.setColor(new Color(212, 22, 156));
+        g2d.setColor(new Color(212, dmg*5, 156));
         g2d.fill(rectangle);
         g2d.setColor(new Color(0, 0, 0));
         g2d.draw(rectangle);
