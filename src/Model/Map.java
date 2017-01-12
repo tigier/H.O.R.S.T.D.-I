@@ -9,15 +9,10 @@ public class Map {
     private int[] spawn;
     private int[] finish;
     /**
-     * map:
-     * wert Feld
-     * 0    normales Feld
-     * 1    gegner Weg
-     * 2    Tower
-     * @param x
-     * @param y
+     * map: Erstellt ein neues Map Objekt mit den Maßen width*height
+     * und die dazugehörigen waypoints
      */
-    public Map(int x, int y){
+    public Map(int width, int height){
         spawn = new int[2];
         spawn[0] = 19;
         spawn[1] = 5;
@@ -46,7 +41,7 @@ public class Map {
         waypoints.push(p);
 
 
-        map = new int[x][y];
+        map = new int[width][height];
 
 
 

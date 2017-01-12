@@ -69,6 +69,7 @@ public class MainFrame extends JFrame {
 
         this.scl = scl;
 
+
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
@@ -98,6 +99,10 @@ public class MainFrame extends JFrame {
 
     }
 
+    public Map getMap(){
+        return map;
+    }
+
     public void updateGold(){
         money.setText(Integer.toString(controller.getMoney()));
     }
@@ -119,6 +124,10 @@ public class MainFrame extends JFrame {
 
         return null;
     }
+
+    /**
+     * lädt die map
+     */
     public void loadMap(){
 
         field = new Field[activePanel.getWidth()/scl][activePanel.getHeight()/scl];
@@ -137,9 +146,7 @@ public class MainFrame extends JFrame {
         }
     }
 
-    public Map getMap(){
-        return map;
-    }
+
 
     /**
      * Liefert das aktuell vom DrawWindow angezeigte DrawingBoard zur�ck

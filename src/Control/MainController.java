@@ -40,14 +40,27 @@ public class MainController {
         return money;
     }
 
-    public void buildTower() {
-        money = money - 37;
+    public List<Enemy> getEnemyList(){
+        return EnemyList;
     }
 
+    /**
+     * Eine billige verkürzung für das ActiveDrawingPanel des Frames
+     */
     public DrawingPanel getPanel() {
         return frame.getActiveDrawingPanel();
     }
 
+    /**
+     * Verringert den Geldwert um den preis eines Turms
+     */
+    public void buildTower() {
+        money = money - 37;
+    }
+
+    /**
+     * erstellt 20 neue Enemys mit HP entsprechend des Levels in einer reihe gestaffelt außerhalb des Bildes
+     */
     public void loadLvl() {
         if(EnemyList==null) {
             EnemyList = new List<Enemy>();
@@ -61,15 +74,19 @@ public class MainController {
         getPanel().resetIterator();
     }
 
-    public List<Enemy> getEnemyList(){
-        return EnemyList;
-    }
-
+    /**
+     * Erstellt eineen Schuss von dem Punkt P1(x1|y1)zu P2(x2|y2)
+     */
     public void drawShot(int x1, int y1, int x2,int y2){
         getPanel().addObject(new Shot(x1,y1,x2,y2));
         frame.drawShot(x1,y1,x2,y2);
+        //// TODO: 12.01.2017 mach funktionierend!!
     }
 
+    /**
+     * erhöt das geld um den Wert eines Gegners und updatet danach alle notwendigen dinge
+     * "Update Methode" des Maincontrollers
+     */
     public void killedEnemy(){
             killedEnemy++;
             money = money + level*2;
@@ -79,10 +96,16 @@ public class MainController {
 
     }
 
+    /**
+     * löscht das Aktuelle objekt der Enemy list damit es nichtmehr anvisiert wird
+     */
     public void removeFromList(){
         EnemyList.remove();
     }
 
+    /**
+     * startet den Level neu wenn alle gegner besiegt wurden
+     */
     public void restartLevel(){
         if(killedEnemy ==0){
             level++;

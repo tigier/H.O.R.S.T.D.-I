@@ -10,6 +10,10 @@ import java.awt.*;
  */
 public class PathField extends Field  implements DrawableObject {
 
+    /**
+     * das Feld auf dem die Tower gebaut werden
+     * @param x / *@param y position des Feldes
+     */
     public PathField(int x, int y,int scl){
         super(x,y,scl);
     }

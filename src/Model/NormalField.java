@@ -10,6 +10,11 @@ import java.awt.*;
  */
 public class NormalField extends Field implements DrawableObject {
 
+
+    /**
+     * das Feld auf dem die Tower gebaut werden
+     * @param x / *@param y position des Feldes
+     */
     public NormalField(int x, int y,int scl){
         super(x,y, scl);
     }
@@ -22,7 +27,6 @@ public class NormalField extends Field implements DrawableObject {
         g2d.setColor(new Color(0, 0, 0));
         g2d.draw(rectangle);
         rectangle.setFrame(x,y,scl,scl);
-
     }
 
     @Override
