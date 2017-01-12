@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
     private Field[][] field;
     private MainController controller;
     private Robot robot;
-    private List<Tower> towerList;
+
     private JLabel money;
 
 
@@ -59,7 +59,7 @@ public class MainFrame extends JFrame {
         getActiveDrawingPanel().add(money);
         money.setVisible(true);
 
-        towerList=new List<>();
+
 
 
 
@@ -91,15 +91,16 @@ public class MainFrame extends JFrame {
                     controller.spentMoney(30);
                     Tower tower = new Tower(250,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl, controller);
                     activePanel.addObject(tower);
-                    towerList.append(tower);
+                    controller.getTowerList().append(tower);
                     money.setText(Integer.toString(controller.getMoney()));
                 }
 
-                towerList.toFirst();
-                while (towerList.getContent().getX() != getActiveDrawingPanel().getMousePosition().x / scl * scl || towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().y / scl * scl) {
-                    towerList.next();
+                controller.getTowerList().toFirst();
+                controller.getTowerList().getContent().toString();
+                while (controller.getTowerList().getContent().getX() != getActiveDrawingPanel().getMousePosition().x / scl * scl || controller.getTowerList().getContent().getY() != getActiveDrawingPanel().getMousePosition().y / scl * scl) {
+                    controller.getTowerList().next();
                 }
-                Tower tower = towerList.getContent();
+                Tower tower = controller.getTowerList().getContent();
                 if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30) {
                     tower.upgrade();
                 }

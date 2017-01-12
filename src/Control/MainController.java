@@ -24,6 +24,8 @@ public class MainController {
 
     private int killedEnemy;
 
+    private List<Tower> towerList;
+
     public MainController(MainFrame frame, int scl) {
         this.frame = frame;
         map = frame.getMap();
@@ -34,6 +36,10 @@ public class MainController {
         money = 300;
         frame.setController(this);
 
+    }
+
+    public List<Tower> getTowerList(){
+        return towerList;
     }
 
     public int getMoney() {
