@@ -40,12 +40,8 @@ public class MainController {
         return money;
     }
 
-    public void buildTower() {
-        money = money - 37;
-    }
-    //'ez'
-    public void upgradeTower(){
-        money=money-50;
+    public void spentMoney(int x){
+        money=money-x;
     }
 
     public DrawingPanel getPanel() {
