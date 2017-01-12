@@ -18,7 +18,8 @@ public class Tower extends Field implements DrawableObject {
     private MainController controller;
     private Enemy target;
     private int range;
-    private int[] pos;
+    private int x;
+    private int y;
     private int reload;
     private int dmg;
 
@@ -34,9 +35,6 @@ public class Tower extends Field implements DrawableObject {
         this.x = x;
         this.y = y;
         createGraphics();
-        pos = new int[2];
-        pos[0] = x;
-        pos[1] = y;
         reload = 50;
         this.controller = controller;
         dmg = 1;
@@ -113,9 +111,9 @@ public class Tower extends Field implements DrawableObject {
 
     @Override
     public void draw(DrawingPanel dp, Graphics2D g2d) {
-        g2d.setColor(new Color(212, dmg*5, 156));
+        g2d.setColor(new Color(212, 22, 156));
         g2d.fill(rectangle);
-        g2d.setColor(new Color(0, 0, 0));
+        g2d.setColor(new Color(dmg*10, dmg*10, dmg*10));
         g2d.draw(rectangle);
         rectangle.setFrame(x,y,50,50);
     }

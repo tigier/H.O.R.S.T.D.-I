@@ -35,6 +35,7 @@ public class MainController {
         level = 1;
         money = 300;
         frame.setController(this);
+        towerList = new List<>();
 
     }
 
