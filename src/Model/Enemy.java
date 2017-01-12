@@ -28,21 +28,46 @@ public class Enemy implements DrawableObject{
         this.speed = speed;
         this.x = x*scl;
         this.y = y*scl;
+
         dead = false;
-        createGraphics();
         hit= 0;
-        if(hp<15) {
-            color = hp*5;
-        }else{
-            color=hp*2;
+
+        color = hp*20;
+        while(color > 256 ){
+            color--;
         }
+
+        createGraphics();
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    /**
+     * nur wichtig für das zeichnen des Objekts
+     */
+    private void createGraphics(){
+        rectangle = new Rectangle2D.Double();
+
     }
 
 
-    public boolean getHit(int d){
+    /**
+     * setzt den "Timer" für das getroffen werde zurück
+     * verringert das Leben
+     * und "stirbt" ggf
+     * wenn es kurz vorher angegriffen wurde erhöht es nur den timer
+     * @return der return ist wichtig für den MainController ob ein gegner gestorben ist
+     */
+    public boolean getHit(){
         if(hit == 0) {
             hit=20;
-            this.hp = hp-d;
+            this.hp = hp-1;
             if (hp <= 0) {
                 dead = true;
                 x = -5000;
@@ -53,12 +78,6 @@ public class Enemy implements DrawableObject{
         }
         hit--;
         return false;
-    }
-
-
-    private void createGraphics(){
-        rectangle = new Rectangle2D.Double();
-
     }
 
     @Override
@@ -73,15 +92,21 @@ public class Enemy implements DrawableObject{
 
     }
 
-    public int getX(){
-        return x;
+    @Override
+    public void update(double dt) {
+        if(dead == false) {
+            for (int i = 0; i < speed; i++) {
+                move();
+            }
+        }
+
+
     }
 
-    public int getY(){
-        return y;
-    }
-
-
+    /**
+     * bewegt das Objekt entlang des Weges weiter
+     * ja es ist eine blöde Lösung aber sie Funktioniert
+     */
     public void move(){
         if(x>19*scl){
             x--;
@@ -105,18 +130,5 @@ public class Enemy implements DrawableObject{
             System.out.println("fertig");
         }
     }
-
-
-    @Override
-    public void update(double dt) {
-        if(dead == false) {
-            for (int i = 0; i < speed; i++) {
-                move();
-            }
-        }
-
-
-    }
-
 
 }

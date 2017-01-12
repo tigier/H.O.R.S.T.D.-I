@@ -42,26 +42,33 @@ public class Tower extends Field implements DrawableObject {
 
     }
 
-
-
-    private void createGraphics(){rectangle = new Rectangle2D.Double();}
-
-    @Override
-    public void draw(DrawingPanel dp, Graphics2D g2d) {
-        g2d.setColor(new Color(212, 22, 156));
-        g2d.fill(rectangle);
-        g2d.setColor(new Color(0, 0, 0));
-        g2d.draw(rectangle);
-        rectangle.setFrame(x,y,50,50);
+    public int getY() {
+        return y;
     }
 
+    public int getX() {
+        return x;
+    }
+    /**
+     * nur wichtig für das zeichnen des Objekts
+     */
+    private void createGraphics(){rectangle = new Rectangle2D.Double();}
+
+    /**
+     * wenn der Tower nachgeladen hat
+     *   schießt dieser einen schuss auf das target
+     *   und ruft die dafür notwendigen methoden auf
+     * andernfalls erhöht er den timer
+     *
+     *
+     */
     public void shotFire(){
         if(reload  >= 70 && target != null){
             //controller.drawShot(x,y,target.getX(),target.getY());
             if(target.getHit(dmg)){
                 controller.getEnemyList().remove();
-                reload = reload -70;
                 controller.killedEnemy();
+                reload = reload -70;
                 target=null;
                 controller.getPanel().resetIterator();
             }
@@ -71,14 +78,10 @@ public class Tower extends Field implements DrawableObject {
         }
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
+    /**
+     * setzt ein target innerhalb der range fest
+     *
+     */
     public void updateEnemy() {
         int distance = range;
         controller.getEnemyList().toFirst();
@@ -95,6 +98,14 @@ public class Tower extends Field implements DrawableObject {
     }
 
 
+    @Override
+    public void draw(DrawingPanel dp, Graphics2D g2d) {
+        g2d.setColor(new Color(212, 22, 156));
+        g2d.fill(rectangle);
+        g2d.setColor(new Color(0, 0, 0));
+        g2d.draw(rectangle);
+        rectangle.setFrame(x,y,50,50);
+    }
 
     @Override
     public void update(double dt) {
@@ -102,9 +113,5 @@ public class Tower extends Field implements DrawableObject {
         shotFire();
 
     }
-
-    //public static List getEnemylist(){
-      //  System.out.print(EnemyList.isEmpty());
-        //return EnemyList;
 
 }
