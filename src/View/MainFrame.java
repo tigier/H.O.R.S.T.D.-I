@@ -2,6 +2,7 @@ package View;
 
 import Control.MainController;
 import Model.*;
+import Model.List;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +28,7 @@ public class MainFrame extends JFrame {
     private Field[][] field;
     private MainController controller;
     private Robot robot;
-
+    private List<Tower> towerList;
     private JLabel money;
 
 
@@ -58,6 +59,7 @@ public class MainFrame extends JFrame {
         getActiveDrawingPanel().add(money);
         money.setVisible(true);
 
+        towerList=new List<>();
 
 
 
@@ -84,11 +86,31 @@ public class MainFrame extends JFrame {
             @Override
             public void keyReleased(KeyEvent keyEvent) {
                 Color color = new Color(212, 125, 31);
-                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >37){
-                    controller.buildTower();
-                    activePanel.addObject(new Tower(250,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl, controller));
+                Color color2 = new Color(212, 22, 156);
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color)&& controller.getMoney() >30){
+                    controller.spentMoney(30);
+                    Tower tower = new Tower(250,getActiveDrawingPanel().getMousePosition().x/scl*scl,getActiveDrawingPanel().getMousePosition().y/scl*scl,scl, controller);
+                    activePanel.addObject(tower);
+                    towerList.append(tower);
                     money.setText(Integer.toString(controller.getMoney()));
                 }
+                while (towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().x / scl * scl && towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().x / scl * scl) {
+                    towerList.next();
+                }
+                Tower tower = towerList.getContent();
+                if(keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2)&& controller.getMoney() > tower.getDmg()*30) {
+                    towerList.toFirst();
+                    while (towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().x / scl * scl && towerList.getContent().getY() != getActiveDrawingPanel().getMousePosition().x / scl * scl) {
+                        towerList.next();
+                    }
+
+
+                   tower.upgrade();
+
+
+                }
+                money.setText(Integer.toString(controller.getMoney()));
+
             }
         });
 
