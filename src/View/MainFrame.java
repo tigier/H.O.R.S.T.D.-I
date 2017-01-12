@@ -86,7 +86,7 @@ public class MainFrame extends JFrame {
             @Override
             public void keyReleased(KeyEvent keyEvent) {
                 Color color = new Color(212, 125, 31);
-                Color color2 = new Color(212, 22, 156);
+                Color color2 = new Color(232, 116, 197);
 
                 if(getColorAtPoint().equals(color)) {
                     if (keyEvent.getKeyCode() == KeyEvent.VK_Q && controller.getMoney() > 30) {
@@ -103,7 +103,7 @@ public class MainFrame extends JFrame {
                         controller.getTowerList().next();
                     }
                     Tower tower = controller.getTowerList().getContent();
-                    if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30 && tower.getDmg() < 10) {
+                    if (keyEvent.getKeyCode() == KeyEvent.VK_Q && getColorAtPoint().equals(color2) && controller.getMoney() > tower.getDmg() * 30 && tower.getDmg() < 5) {
                         tower.upgrade();
                     }
                     System.out.println(controller.getTowerList().getContent().getDmg());
