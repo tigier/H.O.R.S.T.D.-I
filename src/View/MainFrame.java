@@ -47,30 +47,24 @@ public class MainFrame extends JFrame {
         add(activePanel);
         activePanel.setBackground(new Color(212, 125, 31));
         addKeyListener(activePanel);
+
         setLocation(x,y);
         setSize(width,height);
         setTitle(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-
         money = new JLabel("100");
         money.setBounds(500,10,10,10);
         getActiveDrawingPanel().add(money);
         money.setVisible(true);
-
-
-
-
 
         try {
             robot = new Robot();
         } catch (AWTException e) {
             e.printStackTrace();
         }
-
         this.scl = scl;
-
 
         addKeyListener(new KeyListener() {
             @Override
@@ -80,14 +74,12 @@ public class MainFrame extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-
             }
 
             @Override
             public void keyReleased(KeyEvent keyEvent) {
                 Color color = new Color(212, 125, 31);
                 Color color2 = new Color(232, 116, 197);
-
                 if(getColorAtPoint().equals(color)) {
                     if (keyEvent.getKeyCode() == KeyEvent.VK_Q && controller.getMoney() > 30) {
                         controller.spentMoney(30);
@@ -109,12 +101,8 @@ public class MainFrame extends JFrame {
                     System.out.println(controller.getTowerList().getContent().getDmg());
                 }
                 updateGold();
-
-
             }
         });
-
-
 
         map = new Map(activePanel.getWidth()/scl,activePanel.getHeight()/scl);
         loadMap();
@@ -125,10 +113,16 @@ public class MainFrame extends JFrame {
         return map;
     }
 
+    /**
+     * updated das "money" Textfeld
+     */
     public void updateGold(){
         money.setText(Integer.toString(controller.getMoney()));
     }
 
+    /**
+     * malt theoretisch eine linie als Schuss von Punkt 1 zu Punkt 2
+     */
     public void drawShot(int x1, int y1, int x2,int y2){
         getGraphics().drawLine(x1,y1,x2,y2);
 
@@ -138,7 +132,10 @@ public class MainFrame extends JFrame {
         this.controller = controller;
     }
 
-
+    /**
+     * liefert mit hilfe des robots die Farbe an der derzeitigen Mausposition
+     * @return
+     */
     private Color getColorAtPoint() {
         if(robot != null){
             return robot.getPixelColor(MouseInfo.getPointerInfo().getLocation().x,MouseInfo.getPointerInfo().getLocation().y);

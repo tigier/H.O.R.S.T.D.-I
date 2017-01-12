@@ -8,7 +8,7 @@ public class Map {
     private Stack<int[]> waypoints;
     private int[] spawn;
     private int[] finish;
-    /**
+    /**Konstruktor
      * map: Erstellt ein neues Map Objekt mit den Maßen width*height
      * und die dazugehörigen waypoints
      */

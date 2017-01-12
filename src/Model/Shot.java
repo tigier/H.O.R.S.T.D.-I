@@ -15,7 +15,8 @@ public class Shot implements DrawableObject {
     int n;
     private Line2D line2D;
 
-    /**
+    /**#
+     * Konstruktor
      * der Schuss soll eig. durch eine Linie vom Turm zum gegner dargestellt werden funktioniert allerdings nur begrenzt
      */
     public Shot(int x1, int y1, int x2,int y2) {

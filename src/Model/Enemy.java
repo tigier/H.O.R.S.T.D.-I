@@ -21,7 +21,9 @@ public class Enemy implements DrawableObject{
     int scl;
     private int hit;
     private int color;
-
+    /**
+     * Konstruktor
+     */
     public Enemy(int hp, int speed, int x, int y, int scl){
         this. scl = scl;
         this.hp = hp;
