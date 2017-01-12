@@ -33,7 +33,7 @@ public class Enemy implements DrawableObject{
         hit= 0;
 
         color = hp*20;
-        while(color > 256 ){
+        while(color > 254 ){
             color--;
         }
 
