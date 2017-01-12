@@ -28,7 +28,9 @@ public class Tower extends Field implements DrawableObject {
 
 
     private Rectangle2D rectangle;
-
+    /**
+     * Konstruktor
+     */
     public Tower(int range,int x,int y, int scl,MainController controller){
         super(x,y,scl);
         this.range = range;

@@ -26,6 +26,9 @@ public class MainController {
 
     private List<Tower> towerList;
 
+    /**
+     * Konstruktor
+     */
     public MainController(MainFrame frame, int scl) {
         this.frame = frame;
         map = frame.getMap();

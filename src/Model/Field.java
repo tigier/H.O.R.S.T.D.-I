@@ -15,7 +15,9 @@ public abstract class Field implements DrawableObject{
     int scl;
 
     protected Rectangle2D.Double rectangle;
-
+    /**
+     * Konstruktor
+     */
     public Field(int x, int y, int scl){
         this.x = x;
         this.y = y;
